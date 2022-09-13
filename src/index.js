@@ -1,5 +1,4 @@
 import { toggleModal, showFilmInfo, closeFilmModal } from './js/film-modal';
-import { getGenres } from './js/getGenres';
 export const API_KEY = '520faa847257d57af54017c37ef43fe0';
 import axios from 'axios';
 import { getTrending } from './js/getTrending.js';
@@ -15,6 +14,15 @@ const refs = {
   summitButton: document.querySelector('.submit-btn'),
   linkToTeam: document.querySelector('.footer__link'),
   moviesList: document.querySelector('.film__list'),
+  addToWatchedButton: document.querySelector('.watched_btn'),
 };
+// console.log(refs.addToWatchedButton);
+// refs.addToWatchedButton.addEventListener('click', onAddToWatchedButtonClick);
+
+// function onAddToWatchedButtonClick(event) {
+//   console.log(event);
+//   console.log(event.target);
+//   console.log(event.currentTarget);
+// }
 
 export { refs };
