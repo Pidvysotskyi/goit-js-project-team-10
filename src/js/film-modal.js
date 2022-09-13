@@ -1,7 +1,12 @@
 import { getById } from './getById';
 import filmCardTemplate from '../hbs/modal-film-card.hbs';
+<<<<<<< Updated upstream
 import { onAddToWatched } from './localStorageApi';
 import { onAddToQueue } from './localStorageApi';
+=======
+import { onAddToWatched } from "./localStorageApi";
+import { onAddToQueue } from "./localStorageApi";
+>>>>>>> Stashed changes
 
 const refs = {
   openFilmModal: document.querySelector('[data-modal-open]'),
@@ -12,22 +17,39 @@ const refs = {
   addToQueueButton: document.querySelector('[data-add-queue]'),
 };
 
+<<<<<<< Updated upstream
 
 localStorage
 let filmObj = { ob: 'ject' };
 let id;
+=======
+refs.openFilmModal.addEventListener('click', onCardClick);
+refs.closeFilmModal.addEventListener('click', toggleModal);
+refs.addToWatchedButton.addEventListener('click', (e) => { console.log('1111') });
+refs.addToQueueButton.addEventListener('click', onAddToQueue);
 
-export function closeFilmModal(e) {
-  if (e.key === 'Escape') {
-    toggleModal();
-    window.removeEventListener('keydown', closeFilmModal);
-  }
-}
+console.log(refs.addToWatchedButton);
 
-export function toggleModal() {
+console.log(refs.addToWatchedButton.textContent);
+>>>>>>> Stashed changes
+
+
+// export function closeFilmModal(e) {
+//   if (e.key === 'Escape') {
+//     toggleModal();
+//     window.removeEventListener('keydown', closeFilmModal);
+//   }
+// }
+
+export function toggleModal(e) {
+
   refs.filmModal.classList.toggle('is-hidden');
+<<<<<<< Updated upstream
   window.addEventListener('keydown', closeFilmModal);
 
+=======
+  // window.addEventListener('keydown', closeFilmModal);
+>>>>>>> Stashed changes
 }
 function renderFilmInfo(filmData) {
 
@@ -40,6 +62,7 @@ function renderFilmInfo(filmData) {
   //refs.filmCard.insertAdjacentHTML("afterbegin", markup);
   refs.filmCard.innerHTML = markup;
   return Promise.resolve();
+
 }
 export function onCardClick(event) {
  const filmId = event.target.getAttribute('id');

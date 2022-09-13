@@ -26,6 +26,7 @@ let watchedMovies = [];
 //порожній масив для фільмів в черзі
 let queueMovies = [];
 
+<<<<<<< Updated upstream
 export const onAddToWatched = (event) => { 
 
   // e.preventDefault();
@@ -48,3 +49,27 @@ export const onAddToQueue = (filmId ) => {
 
   localStorage.setItem("moviesInQueue", JSON.stringify(queueMovies));
 };
+=======
+export const onAddToWatched = (e, filmData) => { 
+  e.preventDefault();
+  console.log('123');
+// отримати об'єкт фільму з модалки
+    // const filmObject = getById(filmID);
+    watchedMovies.push(filmData);
+
+    localStorage.setItem("watchedMovies", JSON.stringify(watchedMovies));
+};
+
+export const onAddToQueue = (e, filmData) => { 
+  e.preventDefault();
+  console.log('123');
+// отримати об'єкт фільму з модалки
+    // const filmObject  = getById(filmID);
+    queueMovies.push(filmData);
+
+    localStorage.setItem("moviesInQueue", JSON.stringify(queueMovies));
+};
+// -----Event Listeners
+// refs.addToWatchedButton.addEventListener(click, onAddToWatched);
+// refs.addToQueueButton.addEventListener(click, onAddToQueue);
+>>>>>>> Stashed changes
