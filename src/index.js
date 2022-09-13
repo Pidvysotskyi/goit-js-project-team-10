@@ -18,3 +18,14 @@ const refs = {
 };
 
 export { refs };
+
+const addToWatchedButton = document.querySelector('#add_to_watched');
+
+console.log(addToWatchedButton);
+
+addToWatchedButton.addEventListener('click', onAddToWatchButtonClick);
+
+function onAddToWatchButtonClick(event) {
+  console.log(event);
+  console.log('add to watched');
+}
