@@ -1,6 +1,7 @@
 import { API_KEY } from './key.js';
 import Notiflix from 'notiflix';
-// test for deploy
+import Loading from './loading';
+
 /////////////////скрипт чомусь не працює, якщо імпортувати refs із index.js. Можливо, щось роблю неправильно
 // import { refs } from '../index.js';
 
@@ -52,12 +53,8 @@ export default async function renderMoviesList(pageNumber) {
           release_date,
           vote_average,
         }) => {
-          poster_path === null
-            ? (poster = '/uc4RAVW1T3T29h6OQdr7zu4Blui.jpg')
-            : (poster = poster_path);
-          console.log(poster_path);
           return `<li class="gallery__item">
-            <img src="https://image.tmdb.org/t/p/w500${poster}" alt="${original_title}" class="img" id="${id}" />
+            <img src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${original_title}" class="img" id="${id}" />
             <div class="item__ptext">
               <h2 class="item__capt">${title}</h2>
               <div class="item__wrap">
@@ -65,9 +62,10 @@ export default async function renderMoviesList(pageNumber) {
                 <p class="item__rating">${vote_average}</p>
               </div>
             </div>
-        </li>`;
+          </li>`;
         }
       );
+
       return markup;
     }
   });
@@ -85,6 +83,7 @@ async function addPagination() {
     Notiflix.Notify.warning('Please enter the name of the movie');
     return;
   }
+  Loading.standard('Loading...');
   $(`#pagination-container`).pagination({
     dataSource: function (done) {
       var result = [];
@@ -101,4 +100,11 @@ async function addPagination() {
       $(`.film__list`).html(html);
     },
   });
+  $(`#pagination-container`).addHook('beforePaging', function () {
+    Loading.standard('Loading...');
+  });
+  $(`#pagination-container`).addHook('afterPaging', function () {
+    Loading.remove();
+  });
+  Loading.remove();
 }
