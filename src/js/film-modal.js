@@ -17,11 +17,16 @@ export function closeFilmModal(e) {
   }
 }
 
-export function toggleModal() {
-  refs.filmModal.classList.toggle('is-hidden');
-  window.addEventListener('keydown', closeFilmModal);
-
+export function toggleModal(e) {
+  //if (e.target === refs.closeFilmModal || e.currentTarget === refs.closeFilmModal) {
+  //  refs.filmModal.classList.toggle('is-hidden');
+  //  return;
+  //}
+    refs.filmModal.classList.toggle('is-hidden');
+    window.addEventListener('keydown', closeFilmModal);
 }
+
+
 function renderFilmInfo(filmData) {
   const markup = filmCardTemplate(filmData);
   //refs.filmCard.insertAdjacentHTML("afterbegin", markup);
