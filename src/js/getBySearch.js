@@ -39,9 +39,10 @@ export async function onSearch(event) {
 export default async function renderMoviesList(pageNumber) {
   currentPage = pageNumber;
 
-  await getFullQueryResponse(inputQuery, currentPage).then(res => {
-    const moviesResult = res[1].results;
-    const genresList = res[0].genres;
+  await fetchMovies(inputQuery, currentPage).then(res => {
+    const moviesResult = res.results;
+    console.log(moviesResult);
+    console.log('moviesResult');
     if (moviesResult.length >= 1) {
       markup = moviesResult.map(
         ({
@@ -53,6 +54,7 @@ export default async function renderMoviesList(pageNumber) {
           release_date,
           vote_average,
         }) => {
+          const genresList = JSON.parse(localStorage.getItem('genres'));
           const genres = genre_ids.map(item => {
             return getGenreById(item, genresList);
           });
@@ -116,7 +118,9 @@ async function addPagination() {
     },
     pageSize: 20,
     callback: async function (data, pagination) {
-      await renderMoviesList(pagination.pageNumber);
+      if (pagination.pageNumber > 1) {
+        await renderMoviesList(pagination.pageNumber);
+      }
       var html = markup;
       $(`.film__list`).html(html);
     },

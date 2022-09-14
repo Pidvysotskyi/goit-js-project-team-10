@@ -22,9 +22,8 @@ export default async function renderMoviesList(pageNumber) {
     });
   }
   await getTrending(currentPage).then(res => {
-    totalPages = res.total_pages;
+    currentPage = pageNumber;
     const moviesResult = res.results;
-    // const genresList = res[0].genres;
     if (moviesResult.length >= 1) {
       markup = moviesResult.map(
         ({
