@@ -1,5 +1,10 @@
 import { getById } from './getById';
 import filmCardTemplate from '../hbs/modal-film-card.hbs';
+import libRefs from '../library.js';
+import { renderPage } from '../library.js';
+import { clickOnQueueBtn } from '../library.js';
+import { clickOnWatchedBtn } from '../library.js';
+
 const refs = {
   openFilmModal: document.querySelector('[data-modal-open]'),
   closeFilmModal: document.querySelector('[data-modal-close]'),
@@ -29,6 +34,12 @@ export function closeFilmModal(e) {
   } else if (e.key === 'Escape') {
     refs.filmModal.classList.add('is-hidden');
     window.removeEventListener('keydown', closeFilmModal);
+  }
+
+  if (libRefs.queueBtn.classList.contains('current')) {
+    clickOnQueueBtn();
+  } else {
+    clickOnWatchedBtn();
   }
 }
 

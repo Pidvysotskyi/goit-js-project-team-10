@@ -23,7 +23,7 @@ import {
 // JSON.stringify(
 //   localStorage.setItem('moviesInQueue', '[616037, 361743, 760741]')
 // );
-const refs = {
+export default refs = {
   watchedBtn: document.querySelector('.watched_btn'),
   queueBtn: document.querySelector('.queue_btn'),
   linkToTeam: document.querySelector('.footer__link'),
@@ -47,13 +47,12 @@ function renderInfoPage() {
   return refs.moviesList.append(infoPage);
 }
 
-function renderPage() {
+export function renderPage() {
   if (checkLocalStorageOnwatch()) {
     renderInfoPage();
   } else {
     const watchObj = JSON.parse(localStorage.getItem('watchedMovies'));
     refs.moviesList.innerHTML = '';
-    console.log(watchObj);
     for (let obj of watchObj) {
       renderCollection(obj);
       addEfectRenderer();
@@ -61,14 +60,14 @@ function renderPage() {
   }
 }
 
-function clickOnWatchedBtn() {
+export function clickOnWatchedBtn() {
   refs.watchedBtn.classList.add('current');
   refs.queueBtn.classList.remove('current');
 
   renderPage();
 }
 
-function clickOnQueueBtn() {
+export function clickOnQueueBtn() {
   refs.watchedBtn.classList.remove('current');
   refs.queueBtn.classList.add('current');
 
